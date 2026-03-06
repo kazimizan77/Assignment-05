@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | GitHub Issues Tracker</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Geist", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="card w-[420px] bg-white shadow-xl p-8">
+      <div class="text-center space-y-3">
+        <img src="assets/github-logo.png" class="w-16 mx-auto" />
+
+        <h1 class="text-2xl font-bold">GitHub Issues Tracker</h1>
+
+        <p class="text-[#64748bFF]">Sign in to manage your issues</p>
+      </div>
+
+      <div class="mt-6 space-y-4">
+        <div>
+          <label class="text-sm font-medium"> Username </label>
+
+          <input
+            id="username"
+            type="text"
+            placeholder="Enter Username"
+            class="input input-bordered w-full mt-1"
+          />
+        </div>
+
+        <div>
+          <label class="text-sm font-medium"> Password </label>
+
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter Password"
+            class="input input-bordered w-full mt-1"
+          />
+        </div>
+
+        <button id="btn-login" class="btn btn-primary w-full mt-3">
+          Sign In
+        </button>
+      </div>
+    </div>
+
+    <script src="script/login.js"></script>
+  </body>
+</html>
