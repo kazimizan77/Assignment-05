@@ -1,11 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>hello</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | GitHub Issues Tracker</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        font-family: "Geist", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-100 min-h-screen">
+    <nav class="bg-white border-b border-slate-200 px-20">
+      <div
+        class="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+      >
+        <div class="flex items-center gap-2">
+          <img src="assets/github-logo.png" alt="" class="w-6 h-6" />
+          <h1 class="text-lg font-semibold text-slate-900">
+            GitHub Issues Tracker
+          </h1>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <label
+            class="input input-bordered rounded-md bg-white border-slate-200 h-10 w-full md:w-72"
+          >
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Search issues..."
+              class="text-sm"
+            />
+          </label>
+
+          <button
+            id="btn-search"
+            class="btn h-10 min-h-10 rounded-md border-0 bg-[#4f46e5] text-white hover:bg-[#4338ca] px-4"
+          >
+            <i class="fa-solid fa-plus"></i> New Issue
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    
+  </body>
 </html>
