@@ -9,6 +9,8 @@ const searchInput = document.getElementById("input-search");
 const btnSearch = document.getElementById("btn-search");
 
 const spinner = document.getElementById("spinner");
+const issueModal = document.getElementById("issue_modal");
+const detailsContainer = document.getElementById("details-container");
 
 let allIssues = [];
 let displayedIssues = [];
@@ -44,6 +46,19 @@ function getPriorityClass(priority) {
   }
 
   return "bg-slate-100 text-slate-500";
+}
+function getPriorityBadgeClass(priority) {
+  const value = priority.toLowerCase();
+
+  if (value === "high") {
+    return "bg-red-500 text-white";
+  }
+
+  if (value === "medium") {
+    return "bg-amber-400 text-white";
+  }
+
+  return "bg-slate-400 text-white";
 }
 
 function getBorderClass(status) {
@@ -138,7 +153,8 @@ function displayIssues(issues) {
         </span>
       </div>
 
-      <h3 class="font-semibold text-sm text-slate-900 leading-5">
+      <h3 onclick="loadIssueDetails(${issue.id})"
+      class="font-semibold text-sm text-slate-900 leading-5 cursor-pointer hover:underline">
         ${issue.title}
       </h3>
 
@@ -229,6 +245,78 @@ async function handleSearch() {
       </div>`;
   } finally {
     manageSpinner(false);
+  }
+}
+async function loadIssueDetails(id) {
+  try {
+    const response = await fetch(
+      `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
+    );
+
+    const result = await response.json();
+    const issue = result.data;
+
+    detailsContainer.innerHTML = `
+      <h3 class="text-3xl font-bold text-slate-900">
+        ${issue.title}
+      </h3>
+
+      <div class="flex flex-wrap items-center gap-3 mt-4 text-sm text-slate-500">
+        <span class="${
+          issue.status.toLowerCase() === "open"
+            ? "bg-green-500 text-white"
+            : "bg-violet-500 text-white"
+        } px-4 py-2 rounded-full font-medium capitalize">
+          ${issue.status}
+        </span>
+
+        <span>Opened by ${issue.author}</span>
+
+        <span>•</span>
+
+        <span>${formatDate(issue.createdAt)}</span>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mt-6">
+        ${issue.labels
+          .map(function (label) {
+            return `
+              <span class="text-xs px-3 py-2 rounded-full uppercase ${getLabelClass(
+                label,
+              )}">
+                ${label}
+              </span>
+            `;
+          })
+          .join("")}
+      </div>
+
+      <p class="mt-8 text-slate-600 leading-8 text-lg">
+        ${issue.description}
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 rounded-xl p-6">
+        <div>
+          <p class="text-sm text-slate-500">Assignee:</p>
+          <p class="font-bold text-slate-900 text-2xl mt-2">
+            ${issue.assignee ? issue.assignee : "Not assigned"}
+          </p>
+        </div>
+
+        <div>
+          <p class="text-sm text-slate-500">Priority:</p>
+          <span class="inline-block mt-3 px-6 py-2 rounded-full font-semibold uppercase ${getPriorityBadgeClass(
+            issue.priority,
+          )}">
+            ${issue.priority}
+          </span>
+        </div>
+      </div>
+    `;
+
+    issueModal.showModal();
+  } catch (error) {
+    alert("Failed to load issue details");
   }
 }
 function handleTabClick(tabName, activeId) {
