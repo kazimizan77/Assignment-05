@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login | GitHub Issues Tracker</title>
+    <title>Home | GitHub Issues Tracker</title>
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5"
       rel="stylesheet"
@@ -47,7 +47,7 @@
           >
             <span><i class="fa-brands fa-sistrix"></i></span>
             <input
-              id="search-input"
+              id="input-search"
               type="search"
               placeholder="Search issues..."
               class="text-sm"
@@ -124,6 +124,11 @@
       <section id="spinner" class="hidden py-12 text-center">
         <span class="loading loading-spinner loading-lg"></span>
       </section>
+
+      <section
+        id="issues-container"
+        class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"
+      ></section>
     </main>
 
     <script src="script/home.js"></script>
