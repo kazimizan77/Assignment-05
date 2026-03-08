@@ -63,8 +63,8 @@ function getPriorityBadgeClass(priority) {
 
 function getBorderClass(status) {
   return status.toLowerCase() === "open"
-    ? "border-green-500"
-    : "border-violet-500";
+    ? "border-t-[#00A96E]"
+    : "border-t-[#A855F7]";
 }
 
 function getStatusIcon(status) {
@@ -137,55 +137,65 @@ function displayIssues(issues) {
       border-slate-200
       rounded-lg
       p-4
-      border-t-4
+      border-t-[3px]
       ${getBorderClass(issue.status)}
-      hover:shadow-md
+      shadow-[0px_3px_6px_rgba(0,0,0,0.08)]
       transition
+      flex
+      flex-col
+      h-full
     `;
+
     card.innerHTML = `
+  <div class="flex-1">
     <div class="flex items-center justify-between mb-3">
-        ${getStatusIcon(issue.status)}
+      ${getStatusIcon(issue.status)}
 
-        <span class="text-xs px-2 py-1 rounded-full font-medium uppercase ${getPriorityClass(
-          issue.priority,
-        )}">
-          ${issue.priority}
-        </span>
-      </div>
+      <span class="text-xs px-3 py-1 rounded-full font-medium uppercase ${getPriorityClass(
+        issue.priority,
+      )}">
+        ${issue.priority}
+      </span>
+    </div>
 
-      <h3 onclick="loadIssueDetails(${issue.id})"
-      class="font-semibold text-sm text-slate-900 leading-5 cursor-pointer hover:underline">
-        ${issue.title}
-      </h3>
+    <h3
+      onclick="loadIssueDetails(${issue.id})"
+      class="font-semibold text-sm text-slate-900 leading-5 cursor-pointer hover:underline capitalize min-h-10"
+    >
+      ${issue.title}
+    </h3>
 
-      <p class="text-xs text-slate-500 mt-1 leading-5">
-        ${truncateText(issue.description, 80)}
-      </p>
+    <p class="text-xs text-slate-500 mt-3 leading-5 ">
+      ${truncateText(issue.description, 70)}
+    </p>
+    
 
-      <div class="mt-3 space-y-1 text-xs text-slate-500">
-        <p><span class="font-medium text-slate-700">Status:</span> ${issue.status}</p>
-        <p><span class="font-medium text-slate-700">Author:</span> ${issue.author}</p>
-      </div>
+    <div class="flex flex-wrap gap-2 mt-3">
+      ${issue.labels
+        .map(function (label) {
+          return `
+            <span class="text-[10px] px-2.5 py-0.5 rounded-full uppercase whitespace-nowrap ${getLabelClass(
+              label,
+            )}">
+              ${label}
+            </span>
+          `;
+        })
+        .join("")}
+    </div>
+  </div>
 
-      <div class="flex flex-wrap gap-1 mt-3">
-        ${issue.labels
-          .map(function (label) {
-            return `
-              <span class="text-[10px] px-2 py-1 rounded-full uppercase ${getLabelClass(
-                label,
-              )}">
-                ${label}
-              </span>
-            `;
-          })
-          .join("")}
-      </div>
+  <div class="bg-white border-t border-slate-200 mt-3 pt-3 px-3 -mx-4 pb-2">
+    <p class="text-xs text-slate-500">
+      #${issue.id} by ${issue.author}
+    </p>
 
-      <div class="flex justify-between items-center text-xs text-slate-400 mt-4">
-        <span>#${issue.id}</span>
-        <span>${formatDate(issue.createdAt)}</span>
-      </div>
-    `;
+    <p class="text-xs text-slate-400 mt-1">
+      ${formatDate(issue.createdAt)}
+    </p>
+  </div>
+`;
+
     issuesContainer.appendChild(card);
   });
 }
