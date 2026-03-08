@@ -267,18 +267,20 @@ async function loadIssueDetails(id) {
     const issue = result.data;
 
     detailsContainer.innerHTML = `
-      <h3 class="text-3xl font-bold text-slate-900">
+      <h3 class="text-2xl font-bold text-slate-900">
         ${issue.title}
       </h3>
 
-      <div class="flex flex-wrap items-center gap-3 mt-4 text-sm text-slate-500">
+      <div class="flex flex-wrap items-center gap-3 mt-4 text-xs text-slate-500">
         <span class="${
           issue.status.toLowerCase() === "open"
             ? "bg-green-500 text-white"
             : "bg-violet-500 text-white"
-        } px-4 py-2 rounded-full font-medium capitalize">
+        } px-4 py-2 rounded-full font-medium text-xs capitalize">
           ${issue.status}
         </span>
+
+        <span>•</span>
 
         <span>Opened by ${issue.author}</span>
 
@@ -301,21 +303,21 @@ async function loadIssueDetails(id) {
           .join("")}
       </div>
 
-      <p class="mt-8 text-slate-600 leading-8 text-lg">
+      <p class="mt-6 text-slate-500 leading-8">
         ${issue.description}
       </p>
 
-      <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 rounded-xl p-6">
+      <div class="mt-7 grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 rounded-xl p-6">
         <div>
-          <p class="text-sm text-slate-500">Assignee:</p>
-          <p class="font-bold text-slate-900 text-2xl mt-2">
+          <p class="text-slate-500">Assignee:</p>
+          <p class="font-bold text-slate-900 mt-1">
             ${issue.assignee ? issue.assignee : "Not assigned"}
           </p>
         </div>
 
         <div>
-          <p class="text-sm text-slate-500">Priority:</p>
-          <span class="inline-block mt-3 px-6 py-2 rounded-full font-semibold uppercase ${getPriorityBadgeClass(
+          <p class="text-slate-500">Priority:</p>
+          <span class="inline-block mt-1 px-4 py-1.5 text-xs rounded-full font-semibold uppercase ${getPriorityBadgeClass(
             issue.priority,
           )}">
             ${issue.priority}
@@ -329,6 +331,7 @@ async function loadIssueDetails(id) {
     alert("Failed to load issue details");
   }
 }
+
 function handleTabClick(tabName, activeId) {
   currentTab = tabName;
   setActiveTab(activeId);
