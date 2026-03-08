@@ -31,42 +31,59 @@
   </head>
   <body class="bg-gray-100 flex items-center justify-center min-h-screen px-4">
     <div
-      class="card w-full max-w-[420px] bg-white rounded-2xl border border-slate-200 shadow-xl p-8"
+      class="card w-full max-w-[420px] bg-white rounded-2xl border border-slate-200 shadow-xl p-8 md:p-9"
     >
       <div class="text-center space-y-3">
-        <img src="assets/github-logo.png" class="w-16 mx-auto" />
+        <img src="assets/github-logo.png" class="w-24 mx-auto" />
 
-        <h1 class="text-2xl font-bold">GitHub Issues Tracker</h1>
+        <h1 class="text-2xl md:text-[22px] font-bold mb-1">
+          GitHub Issues Tracker
+        </h1>
 
-        <p class="text-[#64748bFF]">Sign in to manage your issues</p>
+        <p class="text-slate-500">Sign in to manage your issues</p>
       </div>
 
       <div class="mt-6 space-y-4">
         <div>
-          <label class="text-sm font-medium"> Username </label>
+          <label class="font-medium"> Username </label>
 
           <input
             id="username"
             type="text"
             placeholder="Enter Username"
-            class="input input-bordered w-full mt-1"
+            class="input input-bordered w-full p-4 mt-1"
           />
+          <p class="text-[#4a00ffFF] text-sm mt-1.5">Default: admin</p>
         </div>
 
         <div>
-          <label class="text-sm font-medium"> Password </label>
+          <label class="font-medium"> Password </label>
 
           <input
             id="password"
             type="password"
             placeholder="Enter Password"
-            class="input input-bordered w-full mt-1"
+            class="input input-bordered w-full p-4 mt-1"
           />
+          <p class="text-[#4a00ffFF] text-sm mt-1.5">Default: admin123</p>
         </div>
 
         <button id="btn-login" class="btn btn-primary rounded-xl w-full mt-3">
           Sign In
         </button>
+      </div>
+
+      <div class="divider text-slate-500 my-6">OR</div>
+
+      <p class="text-center text-slate-500 text-sm mb-2">Demo Credentials:</p>
+
+      <div class="bg-slate-50 rounded-xl p-5 text-center">
+        <p class="text-slate-800">
+          <span class="font-semibold">Username:</span> admin
+        </p>
+        <p class="text-slate-800">
+          <span class="font-semibold">Password:</span> admin123
+        </p>
       </div>
     </div>
 
