@@ -132,7 +132,7 @@ function displayIssues(issues) {
     const card = document.createElement("div");
 
     card.className = `
-    bg-white
+      bg-white
       border
       border-slate-200
       rounded-lg
@@ -362,4 +362,15 @@ searchInput.addEventListener("keypress", function (event) {
   }
 });
 
+searchInput.addEventListener("input", function () {
+  if (searchInput.value.trim() === "") {
+    manageSpinner(true);
+
+    setTimeout(function () {
+      displayedIssues = [...allIssues];
+      renderCurrentView();
+      manageSpinner(false);
+    }, 200);
+  }
+});
 loadIssues();
