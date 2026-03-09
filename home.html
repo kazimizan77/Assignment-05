@@ -32,16 +32,16 @@
   <body class="bg-slate-100 min-h-screen">
     <nav class="bg-white border-b border-slate-200">
       <div
-        class="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+        class="max-w-7xl mx-auto px-3 sm:px-3 md:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
       >
-        <div class="flex items-center gap-2">
+        <div class="flex items-center justify-center md:justify-start gap-2">
           <img src="assets/github-logo.png" alt="" class="w-6 h-6" />
           <h1 class="text-lg font-semibold text-slate-900">
             GitHub Issues Tracker
           </h1>
         </div>
 
-        <div class="flex items-center gap-2">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
           <label
             class="input input-bordered rounded-md bg-white border-slate-200 h-10 w-full md:w-72"
           >
@@ -130,7 +130,7 @@
     </main>
 
     <dialog id="issue_modal" class="modal modal-bottom sm:modal-middle">
-      <div class="modal-box max-w-2xl rounded-2xl p-8">
+      <div class="modal-box w-11/12 max-w-2xl rounded-2xl p-5 sm:p-6 md:p-8">
         <div id="details-container"></div>
 
         <div class="modal-action">
