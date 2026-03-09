@@ -28,7 +28,7 @@ function formatDate(dateString) {
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US");
 }
-function truncateText(text, limit = 80) {
+function truncateText(text= "", limit = 80) {
   if (text.length <= limit) {
     return text;
   }
